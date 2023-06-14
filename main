@@ -1,0 +1,25 @@
+# This is a simple unofficial Python script that programmatically lookups an address in Australia and outputs the
+# NBN connection details such as the connection type, service type, connection status and more.
+# This script is not official and has been made as a project to learn scripting and is in no way affiliated with or
+# approved by the NBN network.
+
+
+# import modules needed
+import pprint
+from nbnpy.nbn import NBN
+
+# Ask the user for their address
+address = input("What is the address?: ")
+nbn_client = NBN()
+
+# pass address variable through location_ids
+location_ids = nbn_client.get_location_ids_from_address(address)
+location_id = location_ids["suggestions"][0]["id"]
+
+# Output from address
+location_info = nbn_client.location_information(location_id)
+pprint.pprint(location_info)
+
+# This code is not affiliated with NBN in anyway whatsoever. This script has been written just for fun and testing.
+
+__name__ == '__main__'
